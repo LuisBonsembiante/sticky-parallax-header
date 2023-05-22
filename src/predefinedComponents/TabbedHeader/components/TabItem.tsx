@@ -95,13 +95,13 @@ const styles = StyleSheet.create({
     fontSize: 16,
     lineHeight: 20,
     paddingHorizontal: 12,
-    paddingVertical: 8,
+    paddingTop: 10,
+    paddingBottom: 3.5,
     color: colors.white,
     textAlign: 'left',
   },
   tabsWrapper: {
     flex: 1,
-    paddingVertical: 12,
   },
   tabTextContainerStyle: {
     backgroundColor: colors.transparent,
