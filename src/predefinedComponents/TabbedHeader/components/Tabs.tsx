@@ -144,8 +144,8 @@ export const Tabs: React.FC<TabsProps> = ({
   const allSizes = tabsWidth.every((it) => !!it) && tabsWidth.length > 0 && !!tabUnderlineColor;
 
   const { inputRange, translateXOutputRange, widthOutputRange } = React.useMemo(() => {
-    const inRange = allSizes ? [0] : [0, 1];
-    const translateXOutRange = allSizes ? [HORIZONTAL_PADDINGS] : [HORIZONTAL_PADDINGS, 100];
+    const inRange = allSizes ? [0, 0] : [0, 1];
+    const translateXOutRange = allSizes ? [HORIZONTAL_PADDINGS, HORIZONTAL_PADDINGS] : [HORIZONTAL_PADDINGS, 100];
     const widthOutRange = translateXOutRange.slice();
 
     if (tabUnderlineColor) {
