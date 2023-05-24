@@ -125,7 +125,7 @@ export const Pager = React.forwardRef<PagerMethods, PagerProps & InternalPagerPr
         return;
       }
 
-      scrollTo(horizontalFlatListRef, offset, 0, true);
+      scrollTo(horizontalFlatListRef, offset, 0, false);
     }
 
     function scrollToTabPosition(position: number) {
