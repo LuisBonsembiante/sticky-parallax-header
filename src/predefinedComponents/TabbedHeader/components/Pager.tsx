@@ -158,22 +158,24 @@ export const Pager = React.forwardRef<PagerMethods, PagerProps & InternalPagerPr
       tabsScrollPosition.current[prevPage] = scrollValue.value;
       const scrollTargetPosition =
         rememberTabScrollPosition && tabsScrollPosition.current[newPage] !== -1
-          ? tabsScrollPosition.current[newPage]
-          : scrollHeight;
+          ? tabsScrollPosition.current[newPage] * 0.9
+          : scrollHeight * 0.9;
 
-      scrollToTabPositionTimeoutValue.value = withDelay(
-        SCROLL_TO_PAGE_OFFSET_TIMEOUT,
-        withTiming(
-          scrollToTabPositionTimeoutValue.value * -1,
-          {
-            duration: 0,
-          },
-          () => {
-            'worklet';
-            scrollToTabPosition(scrollTargetPosition);
-          }
-        )
-      );
+      if(tabsScrollPosition.current[prevPage] > scrollTargetPosition) { 
+        scrollToTabPositionTimeoutValue.value = withDelay(
+          SCROLL_TO_PAGE_OFFSET_TIMEOUT,
+          withTiming(
+            scrollToTabPositionTimeoutValue.value * -1,
+            {
+              duration: 0,
+            },
+            () => {
+              'worklet';
+              scrollToTabPosition(scrollTargetPosition);
+            }
+          )
+        );
+      }
     }
 
     function handlePossiblePageChange(offsetX: number) {
