@@ -109,7 +109,10 @@ export const TabbedHeaderPager = React.forwardRef<ScrollView, TabbedHeaderPagerP
             overScrollMode={overScrollMode}
             renderHeader={renderHeader ?? defaultRenderHeader}
             renderTabs={renderTabs}
-            scrollEventThrottle={scrollEventThrottle}>
+            scrollEventThrottle={scrollEventThrottle}
+            alwaysBounceHorizontal={false}
+            alwaysBounceVertical={false}
+            bounces={false}>
             <Pager
               {...pagerProps}
               disableScrollToPosition={disableScrollToPosition}
