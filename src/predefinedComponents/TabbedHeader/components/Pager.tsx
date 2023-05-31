@@ -9,8 +9,6 @@ import Animated, {
   useAnimatedRef,
   useAnimatedScrollHandler,
   useSharedValue,
-  withDelay,
-  withTiming,
 } from 'react-native-reanimated';
 
 import { commonStyles } from '../../../constants';
@@ -21,7 +19,7 @@ import type { PagerMethods, PagerProps } from '../TabbedHeaderProps';
 // eslint-disable-next-line @typescript-eslint/no-empty-function
 const NOOP = () => {};
 
-const SCROLL_TO_PAGE_OFFSET_TIMEOUT = 250;
+// const SCROLL_TO_PAGE_OFFSET_TIMEOUT = 250;
 
 type Page = React.ReactChild | React.ReactFragment | React.ReactPortal;
 
@@ -74,7 +72,7 @@ export const Pager = React.forwardRef<PagerMethods, PagerProps & InternalPagerPr
       return React.Children.toArray(children);
     }, [children]);
 
-    const tabsScrollPosition = React.useRef<number[]>(Array(data.length).fill(-1));
+    // const tabsScrollPosition = React.useRef<number[]>(Array(data.length).fill(-1));
 
     const goToPageAnimationFrame = React.useRef<ReturnType<typeof requestAnimationFrame>>();
 
