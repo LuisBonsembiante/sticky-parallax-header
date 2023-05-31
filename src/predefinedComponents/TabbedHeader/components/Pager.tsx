@@ -128,21 +128,21 @@ export const Pager = React.forwardRef<PagerMethods, PagerProps & InternalPagerPr
       scrollTo(horizontalFlatListRef, offset, 0, false);
     }
 
-    function scrollToTabPosition(position: number) {
-      'worklet';
-      if (Platform.OS === 'web') {
-        scrollRef.current?.scrollTo({ x: 0, y: position, animated: true });
+    // function scrollToTabPosition(position: number) {
+    //   'worklet';
+    //   if (Platform.OS === 'web') {
+    //     scrollRef.current?.scrollTo({ x: 0, y: position, animated: true });
 
-        return;
-      }
+    //     return;
+    //   }
 
-      scrollTo(scrollRef, 0, position, true);
-    }
+    //   scrollTo(scrollRef, 0, position, true);
+    // }
 
     function goToPage(pageNumber: number) {
       const offset = pageNumber * containerWidthRef.current;
 
-      handleScrollToTabPosition(currentPage, pageNumber);
+      // handleScrollToTabPosition(currentPage, pageNumber);
       runOnUI(scrollToPage)(offset);
 
       setCurrentPage(page);
@@ -150,33 +150,33 @@ export const Pager = React.forwardRef<PagerMethods, PagerProps & InternalPagerPr
       onChangeTab?.(currentPage, pageNumber);
     }
 
-    function handleScrollToTabPosition(prevPage: number, newPage: number) {
-      if (!data.length || scrollValue.value === 0 || disableScrollToPosition) {
-        return;
-      }
+    // function handleScrollToTabPosition(prevPage: number, newPage: number) {
+    //   if (!data.length || scrollValue.value === 0 || disableScrollToPosition) {
+    //     return;
+    //   }
 
-      tabsScrollPosition.current[prevPage] = scrollValue.value;
-      const scrollTargetPosition =
-        rememberTabScrollPosition && tabsScrollPosition.current[newPage] !== -1
-          ? tabsScrollPosition.current[newPage] * 0.9
-          : scrollHeight * 0.9;
+    //   tabsScrollPosition.current[prevPage] = scrollValue.value;
+    //   const scrollTargetPosition =
+    //     rememberTabScrollPosition && tabsScrollPosition.current[newPage] !== -1
+    //       ? tabsScrollPosition.current[newPage] * 0.9
+    //       : scrollHeight * 0.9;
 
-      if(tabsScrollPosition.current[prevPage] > scrollTargetPosition) { 
-        scrollToTabPositionTimeoutValue.value = withDelay(
-          SCROLL_TO_PAGE_OFFSET_TIMEOUT,
-          withTiming(
-            scrollToTabPositionTimeoutValue.value * -1,
-            {
-              duration: 0,
-            },
-            () => {
-              'worklet';
-              scrollToTabPosition(scrollTargetPosition);
-            }
-          )
-        );
-      }
-    }
+    //   if(tabsScrollPosition.current[prevPage] > scrollTargetPosition) { 
+    //     scrollToTabPositionTimeoutValue.value = withDelay(
+    //       SCROLL_TO_PAGE_OFFSET_TIMEOUT,
+    //       withTiming(
+    //         scrollToTabPositionTimeoutValue.value * -1,
+    //         {
+    //           duration: 0,
+    //         },
+    //         () => {
+    //           'worklet';
+    //           scrollToTabPosition(scrollTargetPosition);
+    //         }
+    //       )
+    //     );
+    //   }
+    // }
 
     function handlePossiblePageChange(offsetX: number) {
       const newPage = Math.round(offsetX / containerWidthRef.current);
@@ -185,7 +185,7 @@ export const Pager = React.forwardRef<PagerMethods, PagerProps & InternalPagerPr
         swipedPage?.(newPage);
         onChangeTab?.(currentPage, newPage);
         setCurrentPage(newPage);
-        handleScrollToTabPosition(currentPage, newPage);
+        // handleScrollToTabPosition(currentPage, newPage);
       }
     }
 
@@ -198,7 +198,7 @@ export const Pager = React.forwardRef<PagerMethods, PagerProps & InternalPagerPr
         swipedPage?.(newPage);
         onChangeTab?.(prevPage, newPage);
         setCurrentPage(newPage);
-        handleScrollToTabPosition(prevPage, newPage);
+        // handleScrollToTabPosition(prevPage, newPage);
         currentPageRef.current = newPage;
       }
     }, 100);
